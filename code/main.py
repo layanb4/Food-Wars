@@ -2,6 +2,7 @@ import pygame
 
 from os.path import join
 from random import randint
+import os
 
 
 pygame.init()
@@ -17,18 +18,24 @@ surf = pygame.Surface((100, 200))
 surf.fill('red')
 x = 100
 
+# Get the directory where your script is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Path to the images folder
+images_dir = os.path.join(current_dir, '..', 'images')  # Go up one directory and into 'images'
+
+
 #importing an image
-player_surf = pygame.image.load('images/bluecandy.png')
+player_surf = pygame.image.load(os.path.join(images_dir, 'bluecandy.png'))
 player_surf = pygame.transform.scale(player_surf, (70, 70))
 player_rect = player_surf.get_rect(bottomright=(WINDOW_WIDTH - 20, WINDOW_HEIGHT - 20))
 player_direction = pygame.math.Vector2(1,0)
 player_speed = 300
 
-candy_surf = pygame.image.load('images/donut.png')
+candy_surf = pygame.image.load(os.path.join(images_dir, 'donut.png'))
 candy_surf = pygame.transform.scale(candy_surf, (70, 70))
 candy_rect = candy_surf.get_rect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 
-laser_surf = pygame.image.load('images/redcandy.png')
+laser_surf = pygame.image.load(os.path.join(images_dir, 'redcandy.png'))
 laser_surf = pygame.transform.scale(laser_surf, (70, 70))
 laser_rect = laser_surf.get_rect(bottomleft = (20, WINDOW_HEIGHT-20))
 
