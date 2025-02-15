@@ -12,8 +12,8 @@ images_dir = os.path.join(current_dir, '..', 'images')  # Go up one directory an
 class Player(pygame.sprite.Sprite):
     def __init__(self, groups):
         super().__init__(groups)
-        self.image = pygame.image.load(os.path.join(images_dir, 'bluecandy.png'))
-        self.image = pygame.transform.scale(self.image, (70, 70))
+        self.image = pygame.image.load(os.path.join(images_dir, 'rocket.png'))
+        self.image = pygame.transform.scale(self.image, (70, 100))
         self.rect = self.image.get_rect(bottomright=(WINDOW_WIDTH - 20, WINDOW_HEIGHT - 20))
         self.direction = pygame.Vector2()
         self.speed = 300
@@ -31,7 +31,6 @@ class Player(pygame.sprite.Sprite):
         
 
     def update(self, dt):
-        print("ship is being updated")
         keys = pygame.key.get_pressed()
         self.direction.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])
         self.direction.y = int(keys[pygame.K_DOWN]) - int(keys[pygame.K_UP])
@@ -69,7 +68,7 @@ candy_surf = pygame.image.load(os.path.join(images_dir, 'donut.png'))
 candy_surf = pygame.transform.scale(candy_surf, (70, 70))
 candy_rect = candy_surf.get_rect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 
-laser_surf = pygame.image.load(os.path.join(images_dir, 'redcandy.png'))
+laser_surf = pygame.image.load(os.path.join(images_dir, 'circularcandy.png'))
 laser_surf = pygame.transform.scale(laser_surf, (70, 70))
 laser_rect = laser_surf.get_rect(bottomleft = (20, WINDOW_HEIGHT-20))
 
