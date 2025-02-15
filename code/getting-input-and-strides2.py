@@ -48,6 +48,7 @@ class Laser(pygame.sprite.Sprite):
     def __init__(self, surf, pos, groups):
         super().__init__(groups)
         self.image = surf
+        self.image = pygame.transform.scale(self.image, (70, 100))
         self.rect = self.image.get_frect(midbottom = pos)
     def update(self, dt):
         self.rect.centery -=400*dt
@@ -81,7 +82,6 @@ surf.fill('orange')
 x = 100
 
 all_sprites = pygame.sprite.Group()
-<<<<<<< HEAD
 player = Player(all_sprites)
 
 candy_surf = pygame.image.load(os.path.join(images_dir, 'donut.png'))
@@ -91,7 +91,6 @@ candy_rect = candy_surf.get_rect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 laser_surf = pygame.image.load(os.path.join(images_dir, 'greengummybear.png'))
 laser_surf = pygame.transform.scale(laser_surf, (70, 70))
 laser_rect = laser_surf.get_rect(bottomleft = (20, WINDOW_HEIGHT-20))
-=======
 meteor_sprites = pygame.sprite.Group()
 laser_sprites = pygame.sprite.Group()
 
@@ -106,7 +105,6 @@ meteor_rect = meteor_surf.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 
 
 laser_surf = pygame.image.load(join('images', 'greengummybear.png')).convert_alpha()
 laser_rect = laser_surf.get_frect(bottomleft = (20, WINDOW_HEIGHT - 20))
->>>>>>> e048cae (shot lasers)
 
 #custom event, raining snacks
 meteor_event = pygame.event.custom_type()
