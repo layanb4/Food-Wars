@@ -2,12 +2,19 @@ import pygame
 from os.path import join
 from random import randint
 
+import os
+
+# Get the directory where your script is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Path to the images folder
+images_dir = os.path.join(current_dir, '..', 'images')  # Go up one directory and into 'images'
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, groups):
         super().__init__(groups)
-        self.image = pygame.image.load(join('images', 'rocket.png')).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (80, 100))
-        self.rect = self.image.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT -150))
+        self.image = pygame.image.load(os.path.join(images_dir, 'bluecandy.png'))
+        self.image = pygame.transform.scale(self.image, (70, 70))
+        self.rect = self.image.get_rect(bottomright=(WINDOW_WIDTH - 20, WINDOW_HEIGHT - 20))
         self.direction = pygame.Vector2()
         self.speed = 300
 
@@ -31,18 +38,12 @@ class Player(pygame.sprite.Sprite):
         self.direction = self.direction.normalize() if self.direction else self.direction
         self.rect.center += self.direction * self.speed * dt
 
-        recent_keys = pygame.key.get_just_pressed()
+        recent_keys = pygame.key.get_pressed()
         if recent_keys[pygame.K_SPACE] and self.can_shoot:
             print('fire laser')
             self.can_shoot_time = pygame.time.get_ticks
         
         self.laser_timer()
-
-class Star(pygame.sprite.Sprite):
-    def __init__(self, groups, surf):
-        super().__init__(groups)
-        self.image = surf
-        self.rect = self.image.get_frect(center = (randint(0, WINDOW_WIDTH), randint(0, WINDOW_HEIGHT)))
 
 class Laser(pygame.sprite.Sprite):
     def __init__(self, surf, pos, groups):
@@ -62,16 +63,15 @@ surf.fill('orange')
 x = 100
 
 all_sprites = pygame.sprite.Group()
-star_surf = pygame.image.load(join('images', 'star.png')).convert_alpha()
-for i in range(20):
-    Star(all_sprites, star_surf)
 player = Player(all_sprites)
 
-meteor_surf = pygame.image.load(join('images', 'meteor.png')).convert_alpha()
-meteor_rect = meteor_surf.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
+candy_surf = pygame.image.load(os.path.join(images_dir, 'donut.png'))
+candy_surf = pygame.transform.scale(candy_surf, (70, 70))
+candy_rect = candy_surf.get_rect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 
-laser_surf = pygame.image.load(join('images', 'laser.png')).convert_alpha()
-laser_rect = laser_surf.get_frect(bottomleft = (20, WINDOW_HEIGHT - 20))
+laser_surf = pygame.image.load(os.path.join(images_dir, 'redcandy.png'))
+laser_surf = pygame.transform.scale(laser_surf, (70, 70))
+laser_rect = laser_surf.get_rect(bottomleft = (20, WINDOW_HEIGHT-20))
 
 #custom event, raining snacks
 meteor_event = pygame.event.custom_type()
@@ -88,7 +88,9 @@ while running:
     # update
     all_sprites.update(dt)
     # draw
-    display_surface.fill('darkgray')
+    display_surface.fill('light pink')
+    display_surface.blit(candy_surf, candy_rect)
+    display_surface.blit(laser_surf,laser_rect)
     all_sprites.draw(display_surface)
 
     pygame.display.update()
