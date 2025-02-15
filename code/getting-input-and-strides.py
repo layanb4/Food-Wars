@@ -68,7 +68,7 @@ candy_surf = pygame.image.load(os.path.join(images_dir, 'donut.png'))
 candy_surf = pygame.transform.scale(candy_surf, (70, 70))
 candy_rect = candy_surf.get_rect(center = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
 
-laser_surf = pygame.image.load(os.path.join(images_dir, 'circularcandy.png'))
+laser_surf = pygame.image.load(os.path.join(images_dir, 'greengummybear.png'))
 laser_surf = pygame.transform.scale(laser_surf, (70, 70))
 laser_rect = laser_surf.get_rect(bottomleft = (20, WINDOW_HEIGHT-20))
 
