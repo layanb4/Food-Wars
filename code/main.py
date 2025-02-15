@@ -101,8 +101,6 @@ meteor_surf = pygame.image.load(join('images', 'donut.png')).convert_alpha()
 meteor_surf = pygame.transform.scale(meteor_surf, (110, 110))
 meteor_rect = meteor_surf.get_rect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
 
-# laser_surf = pygame.image.load(join('images', 'greengummybear.png')).convert_alpha()
-# laser_rect = laser_surf.get_rect(bottomleft = (20, WINDOW_HEIGHT - 20))
 
 #custom event, raining snacks
 meteor_event = pygame.event.custom_type()
@@ -132,10 +130,7 @@ while running:
         if collided_sprites:
             laser.kill()
 
-    # draw
     display_surface.fill('light pink')
-    # display_surface.blit(candy_surf, candy_rect)
-    # display_surface.blit(laser_surf,laser_rect)
     all_sprites.draw(display_surface)
 
     pygame.display.update()
