@@ -4,9 +4,9 @@ Food Wars is a Python game created during the JourneyHacks 2025 hackathon. Inspi
 
 ## Contributors
 
-Layan
-Poorvi
-Simone
+Layan<br>
+Poorvi<br>
+Simone<br>
 Lydia
 
 
